@@ -2,7 +2,7 @@
  [{description, "Monitor for raspberry pi"},
   {vsn, "0.1.0"},
   {registered, []},
-  {applications, [kernel, stdlib, erlang_ale]},
+  {applications, [kernel, stdlib, erlang_ale, wx]},
   {mod, {rpimonitor_app, []}},
   {licenses, ["Apache 2.0"]}
  ]}.

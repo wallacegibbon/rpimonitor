@@ -28,7 +28,8 @@ init([]) ->
     {ok, F} = file:open(?TEMP_FILE, [read]),
     {ok, #{f => F}}.
 
-terminate(_Reason, _State) ->
+terminate(_Reason, #{f := F} = State) ->
+    ok = file:close(F),
     ok.
 
 code_change(_OldVsn, State, _Extra) ->

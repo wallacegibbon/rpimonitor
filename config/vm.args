@@ -1,0 +1,6 @@
+-sname rpimonitor
+
+-setcookie rpimonitor_cookie
+
++K true
++A30

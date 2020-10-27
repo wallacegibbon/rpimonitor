@@ -28,7 +28,7 @@ init([]) ->
     {ok, F} = file:open(?TEMP_FILE, [read]),
     {ok, #{f => F}}.
 
-terminate(_Reason, #{f := F} = State) ->
+terminate(_Reason, #{f := F}) ->
     ok = file:close(F),
     ok.
 

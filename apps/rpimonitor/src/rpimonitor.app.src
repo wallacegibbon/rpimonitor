@@ -1,6 +1,6 @@
 {application, rpimonitor,
  [{description, "Monitor for raspberry pi"},
-  {vsn, "0.1.0"},
+  {vsn, "1.0.0"},
   {registered, []},
   {applications, [kernel, stdlib, erlang_ale, wx]},
   {mod, {rpimonitor_app, []}},

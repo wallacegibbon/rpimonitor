@@ -1,7 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 15 14 13   12  11  10    9     8     7     6     5     4     3     2  1  0
-% RST - BRNG PG1 PG0 BADC4 BADC3 BADC2 BADC1 SADC4 SADC3 SADC2 SADC1 M3 M2 M1
-%
+%-----------------------------------------------------------------------------
+% 15  14 13   12  11  10    9     8     7     6     5     4     3     2  1  0
+%-----------------------------------------------------------------------------
+% RST -  BRNG PG1 PG0 BADC4 BADC3 BADC2 BADC1 SADC4 SADC3 SADC2 SADC1 M3 M2 M1
+%-----------------------------------------------------------------------------
 % RST: 1 - reset INA219
 % BRNG: bus voltage range, 0 - 16V;  1 - 32V
 % PG: voltage for shunt register, 40mv, 80mv, 160mv, 320mv
@@ -9,7 +10,24 @@
 % SADC: shunt voltage adc, just like BADC
 % M: mode
 
--define(INA219_IIC_ADDRESS, 16#42).
+% Some info about INA219:
+%
+% 1. The Power Register(03h) is internally set to be 20 times the programmed
+%    Current_LSB.
+%
+% 2. The Calibration Register is calculated based on the following equation:
+%
+%    Calibration_Register = trunc(0.04096 / (Current_LSB * Rshunt))
+%
+%    - 0.04096 is an internal fixed value used to ensure scaling is maintained
+%      properly
+%
+% 3. Current_LSB = (Maximum_Expected_Current) / pow(2, 15)
+%
+% 4. Power_LSB = 20 * Current_LSB
+%
+% 5. Current_Register = Current_Register * Bus_Voltage_Register / 5000
+%
 
 % Config REGISTER (R/W)
 -define(INA219_REG_CONFIG, 16#00).

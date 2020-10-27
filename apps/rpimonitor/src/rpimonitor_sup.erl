@@ -17,7 +17,7 @@ child(Module) ->
     {Module, {Module, start_link, []}, permanent, 10000, worker, [Module]}.
 
 child_list() ->
-    Mods = [],
+    Mods = [rpimonitor_ups, rpimonitor_temp],
     lists:map(fun child/1, Mods).
 
 init([]) ->

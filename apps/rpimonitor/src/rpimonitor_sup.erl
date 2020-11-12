@@ -14,15 +14,15 @@
 -define(SERVER, ?MODULE).
 
 child(Module) ->
-    {Module, {Module, start_link, []}, permanent, 10000, worker, [Module]}.
+    {Module,{Module,start_link,[]},permanent,10000,worker,[Module]}.
 
 child_list() ->
-    Mods = [rpimonitor_ups, rpimonitor_temp, rpimonitor_ui],
+    Mods = [rpimonitor_ups,rpimonitor_temp,rpimonitor_ui],
     lists:map(fun child/1, Mods).
 
 init([]) ->
-    {ok, {{one_for_all, 0, 1}, child_list()}}.
+    {ok,{{one_for_all,0,1},child_list()}}.
 
 start_link() ->
-    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+    supervisor:start_link({local,?SERVER}, ?MODULE, []).
 

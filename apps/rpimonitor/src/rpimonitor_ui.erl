@@ -10,12 +10,9 @@
 
 get_current_info() ->
     {ok,_,VoltagePercent} = rpimonitor_ups:get_voltage(),
-    {ok,Power} = rpimonitor_ups:get_power(),
-    {ok,Current} = rpimonitor_ups:get_current(),
     {ok,Temp} = rpimonitor_temp:get_temp(),
-    Info = io_lib:format("CPU: ~.2f'C, Battery: ~.2f%, Power: ~5.2fW, "
-			 "Current: ~09.6fA",
-			 [Temp,VoltagePercent*100,Current,Power]),
+    Info = io_lib:format("CPU Temperature: ~.2f'C, Battery Power: ~.2f%",
+			 [Temp,VoltagePercent*100]),
     lists:flatten(Info).
 
 
@@ -34,7 +31,7 @@ handle_info(_Info, State) ->
 
 init([]) ->
     Wx = wx:new(),
-    Frm = wxFrame:new(Wx, -1, "Rpi Monitor", [{pos,{1460,0}}, {size,{440,20}}]),
+    Frm = wxFrame:new(Wx, -1, "Rpi Monitor", [{pos,{1500,0}},{size,{360,20}}]),
     Text = wxStaticText:new(Frm, 100, "no data"),
     wxFrame:show(Frm),
     erlang:send_after(1000, ?MODULE, refresh),

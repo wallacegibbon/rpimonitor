@@ -1,8 +1,9 @@
-{application,rpimonitor,
- [{description,"Monitor for raspberry pi"},
-  {vsn,"1.0.0"},
-  {registered,[]},
-  {applications,[kernel,stdlib,erlang_ale,wx]},
-  {mod,{rpimonitor_app,[]}},
-  {licenses,["Apache 2.0"]}
- ]}.
+{application,rpimonitor, [
+	{description,"Monitor for raspberry pi"},
+	{vsn,"1.0.0"},
+	{registered,[]},
+	{applications,[kernel,stdlib,erlang_ale,wx]},
+	{mod,{rpimonitor_app,[]}},
+	{licenses,["Apache 2.0"]}
+]}.
+
